@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+		var BouncingBall = function(){
+			this.container = {
+				obj : null,
+				width : '',
+				height : '',
+				interval : 0
+			};
+			
+			this.ball = {
+				obj : null,
+				top : '',
+				left : '',
+				height : '',
+				width : '',
+				maxWidth : '',
+				maxHeight : '',
+				dx : '',
+				dy : '',
+				stopBall : false,
+				moveRight : true,
+				moveDown : true,
+				counter : 0
+			};
+			
+			this.move = function(){
+					
+					if (this.ball.left >= this.ball.maxWidth){
+						this.ball.moveRight = false;
+					}
+					if (this.ball.left <= 0){
+						this.ball.moveRight = true;
+					}
+					
+					if (this.ball.top >= this.ball.maxHeight){
+						this.ball.moveDown = false;
+					}
+					if (this.ball.top <= 0){
+						this.ball.moveDown = true;
+					}
+					
+					if (this.ball.moveRight) {
+						this.ball.left = this.ball.left + this.ball.dx;
+					} else {
+						this.ball.left = this.ball.left - this.ball.dx;
+					}
+					
+					if (this.ball.moveDown){
+						this.ball.top = this.ball.top + this.ball.dy;
+					} else {
+						this.ball.top = this.ball.top - this.ball.dy;
+					}
+					
+					this.ball.obj.style.top = this.ball.top + 'px';
+					this.ball.obj.style.left = this.ball.left + 'px';
+			};
+			
+			this.clear = function() {
+				clearInterval(this.container.interval);
+				this.container.interval = 0;
+			};
+			
+			
+		}
+		window.onload = function() {
+			var bounceBall = new BouncingBall();
+			bounceBall.container.obj = document.getElementById('container');
+			bounceBall.container.width = bounceBall.container.obj.width;
+			bounceBall.container.height = bounceBall.container.obj.height;
+			
+			bounceBall.ball.obj = document.getElementById('ball');
+			bounceBall.ball.top = 0;
+			bounceBall.ball.left = 0;
+			bounceBall.ball.width = bounceBall.ball.obj.width;
+			bounceBall.ball.height = bounceBall.ball.obj.height;
+			bounceBall.ball.maxWidth = bounceBall.container.obj.offsetWidth - bounceBall.ball.width;
+			bounceBall.ball.maxHeight = bounceBall.container.obj.offsetHeight - bounceBall.ball.height;
+			bounceBall.ball.dx = 10;
+			bounceBall.ball.dy = 30;
+			
+			
+			//bounceBall.ball.stopBall = true;
+			document.getElementById("stopBounce").onclick = function(){
+				bounceBall.clear();
+			}
+			document.getElementById("resumeBounce").onclick = function(){
+				if (bounceBall.container.interval == 0){
+					bounceBall.container.interval = setInterval(function(){bounceBall.move()},100);
+				}
+			}
+			
+			bounceBall.container.interval = setInterval(function(){bounceBall.move()},100);
+		}
+	</script>
+	<style>
+		#container {width:500px;height:500px;border:1px solid red;position:relative;}
+		#ball {position:absolute; top:0px; left:10px;}
+	</style>
+</head>
+<body>
+	<div id="container">
+		<img id="ball" src="ball.png"/>
+	</div>
+	<div id="buttons">
+		<input type="button" id="stopBounce" value="Stop Bounce!"/>
+		<input type="button" id="resumeBounce" value="Resume Bounce!"/>
+	</div>
+</body>
+</html>
