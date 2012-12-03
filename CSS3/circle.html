@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                    
+                });
+        </script>
+        <style>
+            /*Syntax 1: border-*-*-radius: [ <length> | <%> ] [ <length> | <%> ]?
+            Syntax 2: [ <length> | <percentage> ]{1,4} [ / [ <length> | <percentage> ]{1,4} ]?
+            http://www.css3.info/preview/rounded-border/
+            http://www.w3.org/TR/css3-background/#corner-shaping */
+            
+            .bRadius {width:200px; height:200px; background-color:red; padding:2px; display:inline-block;}
+            #equal {border-radius:5px;}
+            //tells us of where to place the top left co-ordinate
+            #r1 {border-top-left-radius: 50px 100px; -moz-border-radius-topleft: 50px 100px; }
+            #r2 {border-top-left-radius: 100px 50px }
+            #circle {border-radius:100px;}
+        </style>
+    </head>
+    <body>
+        <div class="bRadius" id="equal"></div>
+        <div class="bRadius" id="r1"></div>
+        <div class="bRadius" id="r2"></div>
+        <div class="bRadius" id="circle"></div>
+        
+    </body>
+</html>:

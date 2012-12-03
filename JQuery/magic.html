@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                    /* $(this).css{{height: 500px}} will also work */
+                    $('div').mouseenter(function(){$(this).animate({height: '+=100px'})});
+                    $('div').mouseleave(function(){$(this).animate({height: '-=100px'})});
+                    $('div').click(function(){$(this).toggle(1000);});
+                });
+        </script>
+        <style>
+            //display:inline will hide the div
+            .mColor {width:200px;height:200px;display:inline-block;}
+            #color1 {background-color:green;}    
+            #color2 {background-color:red;}
+            #color3 {background-color:blue;}
+            #color4 {background-color:pink;}
+        </style>
+    </head>
+    <body>
+        <div class="mColor" id="color1"></div>
+        <div class="mColor" id="color2"></div>
+        <div class="mColor" id="color3"></div>
+        <div class="mColor" id="color4"></div>
+    </body>
+</html>
